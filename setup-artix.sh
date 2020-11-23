@@ -56,6 +56,58 @@ partitioning()
     done
 }
 
+# formating the home partition
+home_format()
+{
+    while true; do
+        read -p "Write the path to your home partitiom " home
+        if [ -e "$home" ]; then
+            mkfs.ext4 -L HOME $home
+            break
+        else
+            echo "That partitiom doesn't exist!"
+            echo "Please try again!"
+        fi
+    done
+}
+
+# formating the 
+boot_format()
+{
+    while true; do
+        read -p "Write the path to your boot partitiom " boot
+        if [ -e "$boot" ]; then
+            if [ $boot_mode = "bios" ]; then # checking the boot mode
+                mkfs.ext4 -L BOOT $boot
+                break
+            else 
+                 mkfs.fat -F 32 $boo
+                 break
+            fi
+            break
+        else
+            echo "That partitiom doesn't exist!"
+            echo "Please try again!"
+        fi
+    done
+}
+
+# making swap format
+swap_format()
+{
+    while true; do
+        read -p "Write the path to swap partitiom " swap
+        if [ -e "$swap" ]; then
+            mkswap -L SWAP $swap
+            break
+        else
+            echo "That partitiom doesn't exist!"
+            echo "Please try again!"
+        fi
+    done
+}
+
+# the main formating function
 formating()
 {
     clear
@@ -64,12 +116,37 @@ formating()
     read -p "Write your root partition path " root
     while true; do
         if [ -e "$root" ]; then
+            mkfs.ext4 -L ROOT $root
             break
         else
             echo "That partition doesnt exist!"
             echo "Please try again!"
         read -p "Write your root partition path " root
         fi
+    done
+    while true; do
+        read -p "Do you have a separate home partition? " yn
+        case $yn in
+            [Yy]* ) home_format ;;
+            [Nn]* ) break ;;
+            * ) echo "Please answer with Y or N" ;;
+        esac
+    done
+    while true; do
+        read -p "Do you have a separate boot partition? " yn
+        case $yn in
+            [Yy]* ) boot_format ;;
+            [Nn]* ) break ;;
+            * ) echo "Please answer with Y or N" ;;
+        esac
+    done
+    while true; do
+        read -p "Do you have a swap partition? " yn
+        case $yn in
+            [Yy]* ) swap_format ;;
+            [Nn]* ) break ;;
+            * ) echo "Please answer with Y or N" ;;
+        esac
     done
 }
 
