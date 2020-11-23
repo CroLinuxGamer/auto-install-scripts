@@ -84,7 +84,6 @@ boot_format()
                  mkfs.fat -F 32 $boo
                  break
             fi
-            break
         else
             echo "That partitiom doesn't exist!"
             echo "Please try again!"
