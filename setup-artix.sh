@@ -345,7 +345,7 @@ artools-chroot /mnt
 
 # configuring system clock
 printf "Configuring system clock...\n"
-system-clock
+artools-chroot /mnt system-clock
 
 clear
 
