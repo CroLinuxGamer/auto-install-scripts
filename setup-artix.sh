@@ -10,6 +10,15 @@ partitioning()
     printf "\n\n"
     read -p "Write path of the drive you will be using for partitioning: " drive
     while true; do
+        if [ -e "$drive" ]; then
+            break
+        else
+            echo "That path is wrong?"
+            echo "Try again!"
+            read -p "Write path of the drive you will be using for partitioning: " drive
+        fi
+    done
+    while true; do
         printf "What program do you want to use for partitioning?\n1. fdisk\n2. cfdisk\n3. parted\n4. fdisk\n\n"
         read -p "Choose your preferred partitioning tool: " tool
         case $tool in
