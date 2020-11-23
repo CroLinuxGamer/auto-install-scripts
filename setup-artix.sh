@@ -149,6 +149,89 @@ formating()
     done
 }
 
+mount_home()
+{
+    while true; do
+        read -p "Write the path to your root partition " home
+        if [ -e "$home" ]; then
+            mkdir /mnt/home
+            mount $home /mnt/home
+            break
+        else
+            echo "That partitiom doesn't exist!"
+            echo "Please try again!"
+        fi
+    done
+}
+
+mount_boot()
+{
+    while true; do
+        read -p "Write the path to your root partition " boot
+        if [ -e "$boot" ]; then
+            mkdir /mnt/boot
+            mount $boot /mnt/boot
+            break
+        else
+            echo "That partitiom doesn't exist!"
+            echo "Please try again!"
+        fi
+    done
+}
+
+mount_swap()
+{
+    while true; do
+        read -p "Write the path to your swap partition " swap
+        if [ -e "$swap" ]; then
+            swapon $swap
+            break
+        else
+            echo "That partitiom doesn't exist!"
+            echo "Please try again!"
+        fi
+    done
+}
+
+mounting()
+{
+    while true; do
+        read -p "Write the path to your root partition " root
+        if [ -e "$root" ]; then
+            mount $root /mnt
+            break
+        else
+            echo "That partitiom doesn't exist!"
+            echo "Please try again!"
+        fi
+    done
+    while true; do
+        read -p "Do you have a home partition? " yn
+        case $yn in
+            [Yy]* ) mount_home;break ;;
+            [Nn]* ) break ;;
+            * ) echo "Please answer with Y or N" ;;
+        esac
+    done
+        while true; do
+        read -p "Do you have a boot partition? " yn
+        case $yn in
+            [Yy]* ) mount_boot;break ;;
+            [Nn]* ) break ;;
+            * ) echo "Please answer with Y or N" ;;
+        esac
+    done
+        while true; do
+        read -p "Do you have a swap partition? " yn
+        case $yn in
+            [Yy]* ) mount_swap;break ;;
+            [Nn]* ) break ;;
+            * ) echo "Please answer with Y or N" ;;
+        esac
+    done
+
+}
+
 # checking if I already have partitions ready
 while true; do
     read -p "Do you have ready partitions? " yn
@@ -169,6 +252,9 @@ while true; do
         * ) echo "Please answer with Y or N" ;;
     esac
 done
+
+# mounting partitions
+mounting
 
 clear
 
