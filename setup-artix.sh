@@ -151,6 +151,8 @@ formating()
 
 mount_home()
 {
+    clear 
+    lsblk
     while true; do
         read -p "Write the path to your root partition " home
         if [ -e "$home" ]; then
@@ -166,6 +168,8 @@ mount_home()
 
 mount_boot()
 {
+    clear
+    lsblk
     while true; do
         read -p "Write the path to your root partition " boot
         if [ -e "$boot" ]; then
@@ -181,6 +185,8 @@ mount_boot()
 
 mount_swap()
 {
+    clear
+    lsblk
     while true; do
         read -p "Write the path to your swap partition " swap
         if [ -e "$swap" ]; then
@@ -195,6 +201,7 @@ mount_swap()
 
 mounting()
 {
+    lsblk
     while true; do
         read -p "Write the path to your root partition " root
         if [ -e "$root" ]; then
