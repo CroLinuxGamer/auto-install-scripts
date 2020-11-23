@@ -290,22 +290,13 @@ system_clock()
     artools-chroot /mnt ls /usr/share/zoneinfo
     while true; do
         read -p "Chose your zone: " zone
-        if [ -d "/mnt//usr/share/zoneinfo/$zone" ]; then
+        if [ -d "/mnt/usr/share/zoneinfo/$zone" ]; then
+            artools-chroot /mnt ln -sf /usr/share/zoneinfo/$zone/$city /etc/localtime
             break
         else 
             echo "That zone doesn't exist!"
             echo "Please enter a valid zone"
         fi
-        while true; do
-            read -p "Choose your city: " city
-            if [ -d "/mnt/usr/share/zoneinfo/$zone/$city" ]; then
-                artools-chroot /mnt ln -sf /usr/share/zoneinfo/$zone/$city /etc/localtime
-                break
-            else
-                echo "That city doesn't exist!"
-                echo "Please enter a valid city"
-            fi
-        done
     done         
 }
 
