@@ -338,6 +338,5 @@ artools-chroot /mnt curl -O https://raw.githubusercontent.com/CroLinuxGamer/arti
 artools-chroot /mnt chmod +x chroot-artix.sh
 artools-chroot /mnt ./chroot-artix.sh
 
-clear
 
 echo "Your arch install is finished you can now reboot your pc!"
