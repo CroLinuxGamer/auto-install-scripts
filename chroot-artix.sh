@@ -103,6 +103,7 @@ nano /etc/vconsole.conf
 grub_install
 
 # settins root password
+clear
 echo "Setting root password"
 passwd
 
@@ -120,11 +121,13 @@ usermod -aG input $user
 usermod -aG video $user
 
 # set your hostname
+clear
 echo "Set your hostname in the next file"
 sleep 5
 nano /etc/hostname
 
 # set your hosts
+clear
 echo "Set your hosts in the next file"
 sleep 5
 nano /etc/hosts
