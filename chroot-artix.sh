@@ -110,7 +110,22 @@ passwd
 read -p "Type in your user name: " user
 useradd -m $user
 passwd $user
+
+# adding user to basic groups
+usermod -aG games $user
+usermod -aG wheel $user
+usermod -aG tty $user
+usermod -aG audio $user
+usermod -aG input $user
+usermod -aG video $user
+
 # set your hostname
 echo "Set your hostname in the next file"
 sleep 5
 nano /etc/hostname
+
+# set your hosts
+echo "Set your hosts in the next file"
+sleep 5
+nano /etc/hosts
+
