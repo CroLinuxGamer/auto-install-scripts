@@ -285,6 +285,30 @@ while true; do
     esac
 done
 
+system_clock()
+{
+    artools-chroot ls /usr/share/zoneinfo
+    while true; do
+        read -p "Chose your zone: " zone
+        if [ -d "/mnt//usr/share/zoneinfo/$zone" ]; then
+            break
+        else 
+            echo "That zone doesn't exist!"
+            echo "Please enter a valid zone"
+        fi
+        while true; do
+            read -p "Choose your city: " city
+            if [ -d "/mnt/usr/share/zoneinfo/$zone/$city" ]; then
+                artools-chroot ln -sf /usr/share/zoneinfo/$zone/$city /etc/localtime
+                break
+            else
+                echo "That city doesn't exist!"
+                echo "Please enter a valid city"
+            fi
+        done
+    done         
+}
+
 # checking if there is any need for formating partitionsa
 # and making swap partitions if present
 while true; do
@@ -315,9 +339,9 @@ kernel_install
 printf "Generating fstab...\n"
 fstabgen -U /mnt >> /mnt/etc/fstab
 
-# downloading the chroot part of the script and runing it
-wget -O https://raw.githubusercontent.com/CroLinuxGamer/artix-auto/main/chroot-artix.sh /mnt/chroot-artix.sh
-artools-chroot /mnt ./chroot-artix.sh
+# settings up system clock
+echo "Setting up system clock..."
+system_clock
 
 clear
 
