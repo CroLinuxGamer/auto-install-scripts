@@ -249,14 +249,28 @@ mounting()
 
 base_install()
 {
-    printf "Choose your init system\n 1. openrc\n2. runit\n3. s6"
+    printf "Choose your init system\n1. openrc\n2. runit\n3. s6\n"
     while true; do
-        read -p "Type the number of the desired init system" init
+        read -p "Type the number of the desired init system: " init
         case $init in
             [1]* ) basestrap /mnt base base-devel openrc; break ;;
             [2]* ) basestrap /mnt base base-devel runit elogind-runit; break ;;
             [2]* ) basestrap /mnt base base-devel s6 elogind-s6; break ;;
-            * ) echo "Please answer with the nubmer of the nubmer before the name of the init system!" ;;
+            * ) echo "Please answer with the nubmer before the name of the init system!" ;;
+        esac
+    done
+}
+
+kernel_install()
+{
+    printf "Choose your desired kernel\n1. linux\n2. linux-lts\n3. linux-zen\n"
+    while true; do
+        read -p "Type the nubmer of your desired kernel: " kernel
+        case $kernel in
+            [1]* ) basestrap /mnt linux linux-firmware; break ;;
+            [2]* ) basestrap /mnt linux-lts linux-firmware; break ;;
+            [3]* ) basestrap /mnt linux-zen linux-firmware; break ;;
+            * ) echo "Please answer with the number before the name of the kernel!"
         esac
     done
 }
@@ -291,6 +305,11 @@ mounting
 clear
 printf "Installing base system..."
 base_install
+
+# installing kernel
+clear
+printf "Installing kernel..."
+kernel_install
 
 clear
 
