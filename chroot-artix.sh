@@ -33,10 +33,15 @@ pacman -S nano
 
 # locale settings
 clear 
-echo "No you will need to uncomment the locale's you desire in the nex file"
-sleep 2
+echo "Now you will need to uncomment the locale's you desire in the next file"
+sleep 5
 nano /etc/locale.gen
 
 # generating locale's
 clear
 locale-gen
+
+# setting languange in locale.conf
+echo "Now you need to set the locale variable in locale.conf"
+sleep 5
+nano /etc/locale.conf
