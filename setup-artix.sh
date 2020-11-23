@@ -4,6 +4,9 @@
 # setup my artix linux installations. Since I dont want to do everything
 # manually every time I'm installing artix.
 
+# nice clean screen because words are bloat ;)
+clear
+
 # check boot mode
 printf "Checking your boot mode...\n\n"
 if [ -d "/sys/firmware/efi/efivars" ]; then
@@ -56,12 +59,15 @@ formating()
 {
     clear
     while true; do
+        printf "Listing partitions...\n\n"
+        lsblk
         read -p "Write your root partition path " root
        if [ -e "$root" ]; then
            break
        else
            echo "That partition doesnt exist!"
            echo "Please try again!"
+           clear
        fi
     done
 }
