@@ -101,3 +101,11 @@ nano /etc/vconsole.conf
 
 # grub installation
 grub_install
+
+# settins root password
+echo "Setting root password"
+passwd
+
+# setting user password
+read -p "Type in your user name: " user
+passwd $user
