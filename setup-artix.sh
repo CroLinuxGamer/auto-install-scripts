@@ -331,7 +331,9 @@ printf "Generating fstab...\n"
 fstabgen -U /mnt >> /mnt/etc/fstab
 
 artools-chroot /mnt rm -f chroot-arch
-artools-chroot /mnt curl -O https://
+artools-chroot /mnt curl -O https://raw.githubusercontent.com/CroLinuxGamer/artix-auto/main/chroot-artix.sh
+artools-chroot /mnt chmod +x chroot-artix.sh
+artools-chroot /mnt ./chroot-artix.sh
 
 # settings up system clock
 echo "Setting up system clock..."
