@@ -59,16 +59,15 @@ partitioning()
 formating()
 {
     clear
+    printf "Listing partitions...\n\n"
+    lsblk
     while true; do
-        printf "Listing partitions...\n\n"
-        lsblk
         read -p "Write your root partition path " root
        if [ -e "$root" ]; then
            break
        else
            echo "That partition doesnt exist!"
            echo "Please try again!"
-           clear
        fi
     done
 }
