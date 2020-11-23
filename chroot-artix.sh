@@ -110,3 +110,7 @@ passwd
 read -p "Type in your user name: " user
 useradd -m $user
 passwd $user
+# set your hostname
+echo "Set your hostname in the next file"
+sleep 5
+nano /etc/hostname
