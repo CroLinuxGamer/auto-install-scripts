@@ -316,6 +316,8 @@ printf "Generating fstab...\n"
 fstabgen -U /mnt >> /mnt/etc/fstab
 
 # downloading the chroot part of the script and runing it
+wget -O https://raw.githubusercontent.com/CroLinuxGamer/artix-auto/main/chroot-artix.sh /mnt/chroot-artix.sh
+artools-chroot /mnt ./chroot-artix.sh
 
 clear
 
