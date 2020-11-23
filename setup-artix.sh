@@ -285,6 +285,30 @@ while true; do
     esac
 done
 
+system_clock()
+{
+    ls /usr/share/zoneinfo
+    while true; do
+        read -p "Chose your zone: " zone
+        if [ -d "/usr/share/zoneinfo/$zone" ]; then
+            break
+        else 
+            echo "That zone doesn't exist!"
+            echo "Please enter a valid zone"
+        fi
+        while true; do
+            read -p "Choose your city: " city
+            if [ -d "/usr/share/zoneinfo/$zone/$city" ]; then
+                ln -sf /usr/share/zoneinfo/$zone/$city /etc/localtime
+                break
+            else
+                echo "That city doesn't exist!"
+                echo "Please enter a valid city"
+            fi
+        done
+    done         
+}
+
 # checking if there is any need for formating partitionsa
 # and making swap partitions if present
 while true; do
@@ -298,18 +322,30 @@ done
 
 # mounting partitions
 clear
-printf "Mounting partitions..."
+printf "Mounting partitions...\n"
 mounting
 
 # installing base system
 clear
-printf "Installing base system..."
+printf "Installing base system...\n"
 base_install
 
 # installing kernel
 clear
-printf "Installing kernel..."
+printf "Installing kernel...\n"
 kernel_install
+
+# generating fstab
+printf "Generating fstab...\n"
+fstabgen -U /mnt >> /mnt/etc/fstab
+
+# chrooting
+printf "Chrooting into the new system...\n"
+artools-chroot /mnt
+
+# configuring system clock
+printf "Configuring system clock...\n"
+system-clock
 
 clear
 
