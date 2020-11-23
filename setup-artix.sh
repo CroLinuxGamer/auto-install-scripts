@@ -335,10 +335,6 @@ artools-chroot /mnt curl -O https://raw.githubusercontent.com/CroLinuxGamer/arti
 artools-chroot /mnt chmod +x chroot-artix.sh
 artools-chroot /mnt ./chroot-artix.sh
 
-# settings up system clock
-echo "Setting up system clock..."
-system_clock
-
 clear
 
 echo "Your arch install is finished you can now reboot your pc!"

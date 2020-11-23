@@ -5,8 +5,8 @@ system_clock()
     ls /usr/share/zoneinfo
     while true; do
         read -p "Chose your zone: " zone
-        if [ -d "/usr/share/zoneinfo/$zone" ]; then
-            ln -sf /usr/share/zoneinfo/$zone /etc/localtime
+        if [ -f "/usr/share/zoneinfo/$zone" ]; then
+            ln -sf /usr/share/zoneinfo/"$zone" /etc/localtime
             break
         else 
             echo "That zone doesn't exist!"
