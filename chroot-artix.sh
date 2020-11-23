@@ -52,10 +52,10 @@ grub_install()
         fi
     done
     if [ $boot_mode = "bios"]; then
-        grub-install --recheck $boot
+            echo "bios "
         break
     else
-        grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=artix
+        echo "uefi"
         break
     fi
     echo "Generating grub config..."
