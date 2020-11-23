@@ -108,4 +108,5 @@ passwd
 
 # setting user password
 read -p "Type in your user name: " user
+useradd -m $user
 passwd $user
