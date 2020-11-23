@@ -16,5 +16,27 @@ system_clock()
 }
 
 # settings up system clock
+clear
 echo "Setting up system clock..."
 system_clock
+
+# setting hardware clock
+clear
+echo "Setting up hardware clock..."
+hwclock --systohc 
+sleep 2
+
+# installing nano
+clear
+echo "Installing nano..."
+pacman -S nano
+
+# locale settings
+clear 
+echo "No you will need to uncomment the locale's you desire in the nex file"
+sleep 2
+nano /etc/locale.gen
+
+# generating locale's
+clear
+locale-gen
