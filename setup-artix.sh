@@ -83,8 +83,8 @@ clear
 while true; do
     read -p "Do you need to format any partitions? " yn
     case $yn in
-        [Yy]* ) break ;;
-        [Nn]* ) formating; break ;;
+        [Yy]* ) formating; break ;;
+        [Nn]* ) break ;;
         * ) echo "Please answer with Y or N" ;;
     esac
 done
