@@ -43,21 +43,20 @@ grub_install()
     echo "listing your partitions"
     lsblk
     while true; do
-        read -p "Write the path to your boot partitiom " boot
-        if [ -e "$boot" ]; then
-            break
+        read -p "Write the path to your disk " disk
+        if [ -e "$disk" ]; then
+            if [ $boot_mode = "bios" ]; then
+                grub-install --recheck $disk
+                break
+            else
+                grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=artix
+                break
+            fi
         else
             echo "That partitiom doesn't exist!"
             echo "Please try again!"
         fi
     done
-    if [ $boot_mode = "bios"]; then
-            echo "bios "
-        break
-    else
-        echo "uefi"
-        break
-    fi
     echo "Generating grub config..."
     grub-mkconfig -o /boot/grub/grub.cfg
 }
