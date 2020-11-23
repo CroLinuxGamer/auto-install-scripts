@@ -254,6 +254,8 @@ while true; do
 done
 
 # mounting partitions
+clear
+print "Mounting partitions..."
 mounting
 
 clear
