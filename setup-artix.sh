@@ -247,6 +247,20 @@ mounting()
 
 }
 
+base_install()
+{
+    printf "Choose your init system\n 1. openrc\n2. runit\n3. s6"
+    while true; do
+        read -p "Type the number of the desired init system" init
+        case $init in
+            [1]* ) basestrap /mnt base base-devel openrc; break ;;
+            [2]* ) basestrap /mnt base base-devel runit elogind-runit; break ;;
+            [2]* ) basestrap /mnt base base-devel s6 elogind-s6; break ;;
+            * ) echo "Please answer with the nubmer of the nubmer before the name of the init system!" ;;
+        esac
+    done
+}
+
 # checking if I already have partitions ready
 while true; do
     read -p "Do you have ready partitions? " yn
@@ -272,6 +286,11 @@ done
 clear
 printf "Mounting partitions..."
 mounting
+
+# installing base system
+clear
+printf "Installing base system..."
+base_install
 
 clear
 
