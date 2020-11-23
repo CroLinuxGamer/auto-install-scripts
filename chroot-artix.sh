@@ -132,3 +132,8 @@ echo "Set your hosts in the next file"
 sleep 5
 nano /etc/hosts
 
+# enable wheel group to use sudo
+clear echo "enable wheel group in the next file to be able to use sudo"
+sleep 5
+visudo
+clear
