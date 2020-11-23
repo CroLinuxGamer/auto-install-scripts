@@ -127,7 +127,7 @@ formating()
     while true; do
         read -p "Do you have a separate home partition? " yn
         case $yn in
-            [Yy]* ) home_format ;;
+            [Yy]* ) home_format; break ;;
             [Nn]* ) break ;;
             * ) echo "Please answer with Y or N" ;;
         esac
@@ -135,7 +135,7 @@ formating()
     while true; do
         read -p "Do you have a separate boot partition? " yn
         case $yn in
-            [Yy]* ) boot_format ;;
+            [Yy]* ) boot_format; break ;;
             [Nn]* ) break ;;
             * ) echo "Please answer with Y or N" ;;
         esac
@@ -143,7 +143,7 @@ formating()
     while true; do
         read -p "Do you have a swap partition? " yn
         case $yn in
-            [Yy]* ) swap_format ;;
+            [Yy]* ) swap_format;break ;;
             [Nn]* ) break ;;
             * ) echo "Please answer with Y or N" ;;
         esac
