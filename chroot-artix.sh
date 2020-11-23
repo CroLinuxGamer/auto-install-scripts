@@ -45,3 +45,8 @@ locale-gen
 echo "Now you need to set the locale variable in locale.conf"
 sleep 5
 nano /etc/locale.conf
+
+# setting up tty locale
+echo "Now you will set tty locale if you changed it in the artix install"
+sleep 5
+nano /etc/vconsole.conf
