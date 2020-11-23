@@ -154,8 +154,10 @@ mount_home()
     clear 
     lsblk
     while true; do
-        read -p "Write the path to your root partition " home
+        read -p "Write the path to your home partition " home
         if [ -e "$home" ]; then
+            echo "Mounting home partition..."
+            sleep 2
             mkdir /mnt/home
             mount $home /mnt/home
             break
@@ -171,8 +173,10 @@ mount_boot()
     clear
     lsblk
     while true; do
-        read -p "Write the path to your root partition " boot
+        read -p "Write the path to your boot partition " boot
         if [ -e "$boot" ]; then
+            echo "Mounting boot partition..."
+            sleep 2
             mkdir /mnt/boot
             mount $boot /mnt/boot
             break
@@ -190,6 +194,8 @@ mount_swap()
     while true; do
         read -p "Write the path to your swap partition " swap
         if [ -e "$swap" ]; then
+            echo "Mounting swap partition..."
+            sleep 2
             swapon $swap
             break
         else
@@ -205,6 +211,8 @@ mounting()
     while true; do
         read -p "Write the path to your root partition " root
         if [ -e "$root" ]; then
+            echo "Mounting root partition..."
+            sleep 2
             mount $root /mnt
             break
         else
