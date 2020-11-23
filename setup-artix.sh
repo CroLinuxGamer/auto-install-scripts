@@ -43,7 +43,7 @@ sleep 2
 clear
 
 while true; do
-    read -p "Do you have ready partitions? y/n" yn
+    read -p "Do you have ready partitions? y/n " yn
     case $yn in
         [Yy]* ) break ;;
         [Nn]* ) partitioning; break ;;
