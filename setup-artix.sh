@@ -339,13 +339,9 @@ kernel_install
 printf "Generating fstab...\n"
 fstabgen -U /mnt >> /mnt/etc/fstab
 
-# chrooting
-printf "Chrooting into the new system...\n"
-artools-chroot /mnt
-
 # configuring system clock
 printf "Configuring system clock...\n"
-artools-chroot /mnt system-clock
+artools-chroot /mnt system_clock
 
 clear
 
