@@ -330,6 +330,9 @@ kernel_install
 printf "Generating fstab...\n"
 fstabgen -U /mnt >> /mnt/etc/fstab
 
+artools-chroot /mnt rm -f chroot-arch
+artools-chroot /mnt curl -O https://
+
 # settings up system clock
 echo "Setting up system clock..."
 system_clock
