@@ -270,7 +270,7 @@ done
 
 # mounting partitions
 clear
-print "Mounting partitions..."
+printf "Mounting partitions..."
 mounting
 
 clear
