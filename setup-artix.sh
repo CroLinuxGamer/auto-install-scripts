@@ -5,6 +5,7 @@
 # manually every time I'm installing artix.
 
 # nice clean screen because words are bloat ;)
+
 clear
 
 # check boot mode
@@ -82,8 +83,6 @@ while true; do
     esac
 done
 
-clear
-
 # checking if there is any need for formating partitionsa
 # and making swap partitions if present
 while true; do
@@ -94,5 +93,7 @@ while true; do
         * ) echo "Please answer with Y or N" ;;
     esac
 done
+
+clear
 
 echo "Your arch install is finished you can now reboot your pc!"
