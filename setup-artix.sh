@@ -8,6 +8,10 @@
 
 clear
 
+COLUMNS=$(tput cols)
+title="[Auto Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+
 # check boot mode
 printf "Checking your boot mode...\n\n"
 if [ -d "/sys/firmware/efi/efivars" ]; then
@@ -23,7 +27,7 @@ partitioning()
 {
     clear
     COLUMNS=$(tput cols)
-    title="Partitioning"
+    title="[Partitioning]"
     printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
     printf "Listing your partitions...\n\n" # listing partitions on the installation target
     lsblk
@@ -65,8 +69,13 @@ partitioning()
 # formating the home partition
 home_format()
 {
+    clear
+    COLUMNS=$(tput cols)
+    title="[Formating]"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+    printf "Formating your home partition...\n\n"
     while true; do
-        read -p "Write the path to your home partitiom " home
+        read -p "Write the path to your home partitiom: " home
         if [ -e "$home" ]; then
             mkfs.ext4 -L HOME $home
             break
@@ -80,8 +89,13 @@ home_format()
 # formating the 
 boot_format()
 {
+    clear
+    COLUMNS=$(tput cols)
+    title="[Formating]"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+    printf "Formating your boot partitiom...\n\n"
     while true; do
-        read -p "Write the path to your boot partitiom " boot
+        read -p "Write the path to your boot partitiom: " boot
         if [ -e "$boot" ]; then
             if [ $boot_mode = "bios" ]; then # checking the boot mode
                 mkfs.ext4 -L BOOT $boot
@@ -100,8 +114,13 @@ boot_format()
 # making swap format
 swap_format()
 {
+    clear
+    COLUMNS=$(tput cols)
+    title="[Formating]"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+    printf "Formating your swap partition...\n\n"
     while true; do
-        read -p "Write the path to swap partitiom " swap
+        read -p "Write the path to swap partitiom: " swap
         if [ -e "$swap" ]; then
             mkswap -L SWAP $swap
             break
@@ -116,9 +135,12 @@ swap_format()
 formating()
 {
     clear
+    COLUMNS=$(tput cols)
+    title="[Formating]"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
     printf "Listing partitions...\n\n"
     lsblk
-    read -p "Write your root partition path " root
+    read -p "Write your root partition path: " root
     while true; do
         if [ -e "$root" ]; then
             mkfs.ext4 -L ROOT $root
@@ -126,7 +148,7 @@ formating()
         else
             echo "That partition doesnt exist!"
             echo "Please try again!"
-        read -p "Write your root partition path " root
+        read -p "Write your root partition path: " root
         fi
     done
     while true; do
@@ -157,15 +179,19 @@ formating()
 
 mount_home()
 {
-    clear 
+    clear
+    COLUMNS=$(tput cols)
+    title="[Mounting]"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+    printf "Listing your partitions..."
     lsblk
     while true; do
-        read -p "Write the path to your home partition " home
+        read -p "Write the path to your home partition: " home
         if [ -e "$home" ]; then
             echo "Mounting home partition..."
-            sleep 2
             mkdir /mnt/home
             mount $home /mnt/home
+            sleep 2
             break
         else
             echo "That partitiom doesn't exist!"
@@ -177,14 +203,18 @@ mount_home()
 mount_boot()
 {
     clear
+    COLUMNS=$(tput cols)
+    title="[Mounting]"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+    printf "Listing your partitions..."
     lsblk
     while true; do
-        read -p "Write the path to your boot partition " boot
+        read -p "Write the path to your boot partition: " boot
         if [ -e "$boot" ]; then
             echo "Mounting boot partition..."
-            sleep 2
             mkdir /mnt/boot
             mount $boot /mnt/boot
+            sleep 2
             break
         else
             echo "That partitiom doesn't exist!"
@@ -196,13 +226,17 @@ mount_boot()
 mount_swap()
 {
     clear
+    COLUMNS=$(tput cols)
+    title="[Mounting]"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+    printf "Listing your partitions..."
     lsblk
     while true; do
-        read -p "Write the path to your swap partition " swap
+        read -p "Write the path to your swap partition: " swap
         if [ -e "$swap" ]; then
             echo "Mounting swap partition..."
-            sleep 2
             swapon $swap
+            sleep 2
             break
         else
             echo "That partitiom doesn't exist!"
@@ -213,9 +247,14 @@ mount_swap()
 
 mounting()
 {
+    clear
+    COLUMNS=$(tput cols)
+    title="[Mounting]"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+    printf "Listing your partitions..."
     lsblk
     while true; do
-        read -p "Write the path to your root partition " root
+        read -p "Write the path to your root partition: " root
         if [ -e "$root" ]; then
             echo "Mounting root partition..."
             sleep 2
@@ -255,6 +294,10 @@ mounting()
 
 base_install()
 {
+    clear
+    COLUMNS=$(tput cols)
+    title="[Base installation]"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
     printf "Choose your init system\n1. openrc\n2. runit\n3. s6\n"
     while true; do
         read -p "Type the number of the desired init system: " init
@@ -269,6 +312,10 @@ base_install()
 
 kernel_install()
 {
+    clear
+    COLUMNS=$(tput cols)
+    title="[Kernel installation]"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
     printf "Choose your desired kernel\n1. linux\n2. linux-lts\n3. linux-zen\n"
     while true; do
         read -p "Type the nubmer of your desired kernel: " kernel
@@ -291,23 +338,12 @@ while true; do
     esac
 done
 
-system_clock()
-{
-    artools-chroot /mnt ls /usr/share/zoneinfo
-    while true; do
-        read -p "Chose your zone: " zone
-        if [ -d "/mnt/usr/share/zoneinfo/$zone" ]; then
-            artools-chroot /mnt ln -sf /usr/share/zoneinfo/$zone/$city /etc/localtime
-            break
-        else 
-            echo "That zone doesn't exist!"
-            echo "Please enter a valid zone"
-        fi
-    done         
-}
-
 # checking if there is any need for formating partitionsa
 # and making swap partitions if present
+clear
+COLUMNS=$(tput cols)
+title="[Auto Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 while true; do
     read -p "Do you need to format any partitions? " yn
     case $yn in
@@ -319,32 +355,68 @@ done
 
 # mounting partitions
 clear
+COLUMNS=$(tput cols)
+title="[Auto Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 printf "Mounting partitions...\n"
+sleep 2
 mounting
 
 # installing base system
 clear
+COLUMNS=$(tput cols)
+title="[Auto Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 printf "Installing base system...\n"
+sleep 2
 base_install
 
 # installing kernel
 clear
+COLUMNS=$(tput cols)
+title="[Auto Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 printf "Installing kernel...\n"
+sleep 2
 kernel_install
 
 # generating fstab
 clear
+COLUMNS=$(tput cols)
+title="[Auto Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 printf "Generating fstab...\n"
 fstabgen -U /mnt >> /mnt/etc/fstab
 sleep 2
 
 clear
-artools-chroot /mnt rm -f chroot-arch
+COLUMNS=$(tput cols)
+title="[Auto Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+printf "Downloading the chroot part of the script..."
 artools-chroot /mnt curl -sO https://raw.githubusercontent.com/CroLinuxGamer/artix-auto/main/chroot-artix.sh
 artools-chroot /mnt chmod +x chroot-artix.sh
+sleep 2
 artools-chroot /mnt ./chroot-artix.sh
 artools-chroot /mnt rm -f chroot-arch
 
+# unmount drives and turning off swap
+print "Unmounting drives..."
 umount -R /mnt
+lsblk
+while true; do
+    read -p "Write the path to your swap partition: " swap
+    if [ -e "$swap" ]; then
+        echo "Turning off swap ..."
+        swapoff $swap
+        sleep 2
+        break
+    else
+        echo "That partitiom doesn't exist!"
+        echo "Please try again!"
+    fi
+done
+
+clear
 
 echo "Your arch install is finished you can now reboot your pc!"
