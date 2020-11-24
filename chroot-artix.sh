@@ -147,7 +147,7 @@ title="[Chroot Artix]"
 printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 echo "Now you will set tty locale if you changed it in the artix install"
 sleep 5
-nano /etc/vconsole.conf
+nano /etc/conf.d/keymaps
 
 # grub installation
 COLUMNS=$(tput cols)

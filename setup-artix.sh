@@ -101,7 +101,7 @@ boot_format()
                 mkfs.ext4 -L BOOT $boot
                 break
             else 
-                 mkfs.fat -F 32 $boo
+                 mkfs.fat -F 32 $boot
                  break
             fi
         else
