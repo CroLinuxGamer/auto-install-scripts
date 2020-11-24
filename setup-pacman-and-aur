@@ -3,21 +3,25 @@
 # installing needed packages
 clear
 echo "Installaling needed packages..."
-pacman -S --needed git base-devel wget ccache
+sleep 2
+sudo pacman -S --needed git base-devel wget ccache
 
 # installing yay
 clear
 echo "Installing yay..."
 git clone https://aur.archlinux.org/yay.git
 cd yay
+sleep 2
 makepkg -si
 
 # pacman config edit
 clear
 echo "Edit pacman config for your needs..."
+sleep 2
 sudo nano /etc/pacman.conf
 
 # downloading custom makepkg.conf
 clear
-echo "Downloading custom makepkg.conf"
-wget https://raw.githubusercontent.com/CroLinuxGamer/artix-auto/main/makepkg.conf -O /etc/makepkg.conf
+echo "Downloading custom makepkg.conf..."
+sleep 2
+sudo wget https://raw.githubusercontent.com/CroLinuxGamer/artix-auto/main/makepkg.conf -O /etc/makepkg.conf
