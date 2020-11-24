@@ -28,6 +28,7 @@ sleep 2
 echo " Add .local/bin/ to path"
 sleep 1
 wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/Bin/lf/preview -O $HOME/.local/bin/preview
+chmod +x .local/bin/preview
 
 # logout and login
 clear
