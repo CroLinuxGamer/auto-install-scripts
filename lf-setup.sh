@@ -9,7 +9,7 @@ yay -S lf-git
 # download previe needed files
 clear
 echo "Downloading preview needed programs..."
-yay -S mediainfo glow-bin python-pdftotext epub2txt zip tar unrar 7z w3m highlight
+yay -S mediainfo glow-bin python-pdftotext epub2txt zip tar unrar 7z w3m highlight atool
 
 # download custom config
 clear
