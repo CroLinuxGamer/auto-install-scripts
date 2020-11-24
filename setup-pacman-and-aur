@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# installing needed packages
+clear
+echo "Installaling needed packages..."
+pacman -S --needed git base-devel wget ccache
+
+# installing yay
+clear
+echo "Installing yay..."
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+# pacman config edit
+clear
+echo "Edit pacman config for your needs..."
+sudo nano /etc/pacman.conf
