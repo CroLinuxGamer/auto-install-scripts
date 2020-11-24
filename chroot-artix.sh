@@ -8,8 +8,16 @@ else
     boot_mode="bios"
 fi
 
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+
 system_clock()
 {
+    clear
+    COLUMNS=$(tput cols)
+    title="[System Clock]"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
     ls /usr/share/zoneinfo
     while true; do
         read -p "Chose your zone: " zone
@@ -26,11 +34,14 @@ system_clock()
 grub_install()
 {
     clear
+    COLUMNS=$(tput cols)
+    title="[Grub install]"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
     echo "Installing grub..."
     if [ $boot_mode = "bios" ]; then
-        pacman -S grub
+        pacman -S grub -y
     else
-        pacman -S grub efibootmgr
+        pacman -S grub efibootmgr -y
     fi
     while true; do
         read -p "Are you dualbooting with more operating systems?" yn
@@ -63,51 +74,81 @@ grub_install()
 
 # settings up system clock
 clear
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 echo "Setting up system clock..."
 system_clock
 
 # setting hardware clock
 clear
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 echo "Setting up hardware clock..."
 hwclock --systohc 
 sleep 2
 
 # installing nano
 clear
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 echo "Installing nano..."
 pacman -S nano
 
 # locale settings
 clear 
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 echo "Now you will need to uncomment the locale's you desire in the next file"
 sleep 5
 nano /etc/locale.gen
 
 # generating locale's
 clear
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 locale-gen
 
 # setting languange in locale.conf
 clear
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 echo "Now you need to set the locale variable in locale.conf"
 sleep 5
 nano /etc/locale.conf
 
 # setting up tty locale
 clear
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 echo "Now you will set tty locale if you changed it in the artix install"
 sleep 5
 nano /etc/vconsole.conf
 
 # grub installation
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 grub_install
 
 # settins root password
 clear
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 echo "Setting root password"
 passwd
 
 # setting user password
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 read -p "Type in your user name: " user
 useradd -m $user
 passwd $user
@@ -122,18 +163,27 @@ usermod -aG video $user
 
 # set your hostname
 clear
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 echo "Set your hostname in the next file"
 sleep 5
 nano /etc/hostname
 
 # set your hosts
 clear
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 echo "Set your hosts in the next file"
 sleep 5
 nano /etc/hosts
 
 # enable wheel group to use sudo
 clear echo "enable wheel group in the next file to be able to use sudo"
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 sleep 5
 visudo
 clear
