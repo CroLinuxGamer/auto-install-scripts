@@ -15,19 +15,24 @@ if [ -d "/sys/firmware/efi/efivars" ]; then
 else
     boot_mode="bios"
 fi
+sleep 2
 
 
 # Partitoning function that calls for users program of choice
 partitioning()
 {
     clear
-    printf "Listing your partitions\n\n" # listing partitions on the installation target
+    COLUMNS=$(tput cols)
+    title="Partitioning"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+    printf "Listing your partitions...\n\n" # listing partitions on the installation target
     lsblk
     printf "\n\n"
     read -p "Write path of the drive you will be using for partitioning: " drive
     while true; do # checking if the drive exists
-        if [ -e "$drive" ]; then
-            break
+        clear
+        if [ -e "$drive" ]; then # if drive exists
+            break # continue
         else
             echo "That path is wrong?"
             echo "Try again!"
@@ -35,7 +40,7 @@ partitioning()
         fi
     done
     while true; do # doing partitioning until you are satisfied
-        printf "What program do you want to use for partitioning?\n1. fdisk\n2. cfdisk\n3. parted\n4. fdisk\n\n"
+        printf "What tool do you want to use for partitioning?\n1. fdisk\n2. cfdisk\n3. parted\n4. fdisk\n\n" # listing partitioning tools
         read -p "Choose your preferred partitioning tool: " tool
         case $tool in
             [1]* ) fdisk $drive ;;
@@ -44,6 +49,7 @@ partitioning()
             [4]* ) fdisk $drive ;;
         esac
         clear 
+        printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
         printf "Listing your newly created partitions\n\n"
         lsblk
         printf "\n\n"
@@ -334,7 +340,7 @@ sleep 2
 
 clear
 artools-chroot /mnt rm -f chroot-arch
-artools-chroot /mnt curl -O https://raw.githubusercontent.com/CroLinuxGamer/artix-auto/main/chroot-artix.sh
+artools-chroot /mnt curl -sO https://raw.githubusercontent.com/CroLinuxGamer/artix-auto/main/chroot-artix.sh
 artools-chroot /mnt chmod +x chroot-artix.sh
 artools-chroot /mnt ./chroot-artix.sh
 artools-chroot /mnt rm -f chroot-arch
