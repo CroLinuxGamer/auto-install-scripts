@@ -204,7 +204,7 @@ title="[Chroot Artix]"
 printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 echo "enable wheel group in the next file to be able to use sudo"
 sleep 5
-visudo
+env EDITOR=nano visudo
 clear
 
 # installing network manager
