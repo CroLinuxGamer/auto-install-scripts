@@ -4,7 +4,8 @@
 clear
 echo "Installaling needed packages..."
 sleep 2
-sudo pacman -S --needed git base-devel wget ccache
+sudo pacman -Sy
+sudo pacman -S --needed git base-devel wget ccache go
 
 # installing yay
 clear
@@ -19,6 +20,7 @@ clear
 echo "Edit pacman config for your needs..."
 sleep 2
 sudo nano /etc/pacman.conf
+sudo pacman -Sy
 
 # downloading custom makepkg.conf
 clear
