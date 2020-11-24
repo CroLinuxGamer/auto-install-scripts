@@ -14,6 +14,7 @@ yay -S mediainfo glow-bin python-pdftotext epub2txt zip tar unrar 7z w3m highlig
 # download custom config
 clear
 echo "Downloading custom config..."
+mkdir .config
 mkdir .config/lf
 sleep 2
 wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/lf/lfrc -O .config/lf/lfrc
@@ -22,7 +23,7 @@ wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/lf/
 clear
 mkdir .local/bin/
 echo "Downloading custom preview script..."
-echo "export PATH="$HOME.local/bin:$PATH" " >> .bashrc
+echo "export PATH="$HOME/.local/bin:$PATH" " >> .bashrc
 wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/Bin/lf/preview -O $HOME/.local/bin/preview
 
 # logout and login
