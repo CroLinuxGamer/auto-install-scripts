@@ -72,6 +72,24 @@ grub_install()
     grub-mkconfig -o /boot/grub/grub.cfg
 }
 
+network_manager()
+{
+    clear
+    COLUMNS=$(tput cols)
+    title="[Network Manager]"
+    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+    printf "Choose your init system\n1. openrc\n2. runit\n3. s6\n"
+    while true; do
+        read -p "Type the number of the desired init system: " init
+        case $init in
+            [1]* ) pacman -S networkmanager-openrc -y ;  rc-update add networkmanagerd ; break ;;
+            [2]* ) pacman -S networkmanager-runit -y ; printf "After rebooting you need to run \nln -s /etc/runit/sv/networkmanagerd /etc/runit/runsvdir/defaul\nto be able to use metwork manager" ; sleep 5;break ;;
+            [2]* ) pacman -S networkmanager-s6 -y ; printf "After rebooting you need to run\ns6-rc-bundle -c /etc/s6/rc/compiled add default connmand\n to be able to use network manager"; sleep 5;break ;;
+            * ) echo "Please answer with the nubmer before the name of the init system!" ;;
+        esac
+    done
+}
+
 # settings up system clock
 clear
 COLUMNS=$(tput cols)
@@ -180,10 +198,19 @@ sleep 5
 nano /etc/hosts
 
 # enable wheel group to use sudo
-clear echo "enable wheel group in the next file to be able to use sudo"
+clear 
 COLUMNS=$(tput cols)
 title="[Chroot Artix]"
 printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+echo "enable wheel group in the next file to be able to use sudo"
 sleep 5
 visudo
 clear
+
+# installing network manager
+clear 
+COLUMNS=$(tput cols)
+title="[Chroot Artix]"
+printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
+network_manager
+
