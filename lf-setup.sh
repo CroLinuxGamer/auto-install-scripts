@@ -21,9 +21,12 @@ wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/lf/
 
 # downloading custom preview script
 clear
+mkdir .local
 mkdir .local/bin/
 echo "Downloading custom preview script..."
+sleep 2
 echo "export PATH="$HOME/.local/bin:$PATH"" >> .bashrc
+sleep 1
 wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/Bin/lf/preview -O $HOME/.local/bin/preview
 
 # logout and login
