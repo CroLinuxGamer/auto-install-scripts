@@ -413,7 +413,7 @@ artools-chroot /mnt curl -sO https://raw.githubusercontent.com/CroLinuxGamer/art
 artools-chroot /mnt chmod +x chroot-artix.sh
 sleep 2
 artools-chroot /mnt ./chroot-artix.sh
-artools-chroot /mnt rm -f chroot-arch
+artools-chroot /mnt rm -f chroot-arch.sh
 
 # unmount drives and turning off swap
 print "Unmounting drives..."
