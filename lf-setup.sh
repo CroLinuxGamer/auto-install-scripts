@@ -25,7 +25,7 @@ mkdir .local
 mkdir .local/bin/
 echo "Downloading custom preview script..."
 sleep 2
-echo "export PATH="$HOME/.local/bin:$PATH"" >> .bashrc
+echo " Add .local/bin/ to path"
 sleep 1
 wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/Bin/lf/preview -O $HOME/.local/bin/preview
 
