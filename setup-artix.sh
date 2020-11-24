@@ -327,6 +327,21 @@ kernel_install()
         esac
     done
 }
+unmount_swap()
+{
+    while true; do
+        read -p "Write the path to your swap partition: " swap
+        if [ -e "$swap" ]; then
+            echo "Turning off swap ..."
+            swapoff $swap
+            sleep 2
+            break
+        else
+            echo "That partitiom doesn't exist!"
+            echo "Please try again!"
+        fi
+    done
+}
 
 # checking if I already have partitions ready
 while true; do
@@ -405,16 +420,12 @@ print "Unmounting drives..."
 umount -R /mnt
 lsblk
 while true; do
-    read -p "Write the path to your swap partition: " swap
-    if [ -e "$swap" ]; then
-        echo "Turning off swap ..."
-        swapoff $swap
-        sleep 2
-        break
-    else
-        echo "That partitiom doesn't exist!"
-        echo "Please try again!"
-    fi
+    read -p "Did you enable swap? " yn
+    case $yn in
+        [Yy]* ) unmount_swap; break ;;
+        [Nn]* ) break ;;
+        * ) echo "Please answer with Y or N" ;;
+    esac
 done
 
 clear

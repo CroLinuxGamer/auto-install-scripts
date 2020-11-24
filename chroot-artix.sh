@@ -82,9 +82,9 @@ network_manager()
     while true; do
         read -p "Type the number of the desired init system: " init
         case $init in
-            [1]* ) pacman -S networkmanager-openrc -y ;  rc-update add networkmanagerd ; break ;;
-            [2]* ) pacman -S networkmanager-runit -y ; printf "After rebooting you need to run \nln -s /etc/runit/sv/networkmanagerd /etc/runit/runsvdir/defaul\nto be able to use metwork manager" ; sleep 5;break ;;
-            [2]* ) pacman -S networkmanager-s6 -y ; printf "After rebooting you need to run\ns6-rc-bundle -c /etc/s6/rc/compiled add default connmand\n to be able to use network manager"; sleep 5;break ;;
+            [1]* ) pacman -S networkmanager-openrc -y ;  rc-update add NetworkManager ; break ;;
+            [2]* ) pacman -S networkmanager-runit -y ; printf "After rebooting you need to run \nln -s /etc/runit/sv/NetworkManager /etc/runit/runsvdir/defaul\nto be able to use metwork manager" ; sleep 5;break ;;
+            [2]* ) pacman -S networkmanager-s6 -y ; printf "After rebooting you need to run\ns6-rc-bundle -c /etc/s6/rc/compiled add default NetworkManager\n to be able to use network manager"; sleep 5;break ;;
             * ) echo "Please answer with the nubmer before the name of the init system!" ;;
         esac
     done
