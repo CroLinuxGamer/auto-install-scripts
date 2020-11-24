@@ -10,6 +10,7 @@ wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.zshenv -O 
 wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/zsh/.zprofile -O .config/zsh/.zprofile
 wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/zsh/aliasrc -O .config/zsh/aliasrc
 wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/zsh/.zshrc -O .config/zsh/.zshrc
+wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.p10k.zsh -O .p10k.zsh
 
 # downloading needed packages
 echo "Downloading needed packages..."
