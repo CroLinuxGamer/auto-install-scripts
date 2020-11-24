@@ -16,3 +16,8 @@ makepkg -si
 clear
 echo "Edit pacman config for your needs..."
 sudo nano /etc/pacman.conf
+
+# downloading custom makepkg.conf
+clear
+echo "Downloading custom makepkg.conf"
+wget https://raw.githubusercontent.com/CroLinuxGamer/artix-auto/main/makepkg.conf -O /etc/makepkg.conf
