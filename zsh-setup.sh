@@ -1,16 +1,16 @@
 #!/bin/sh
 
 # make directory
-mkdir .config
-mkdir .config/zsh
+mkdir ~/.config
+mkdir ~/.config/zsh
 
 # downloading zsh configs
 echo "Downloading zsh configs..."
-wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.zshenv -O .zshenv
-wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/zsh/.zprofile -O .config/zsh/.zprofile
-wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/zsh/aliasrc -O .config/zsh/aliasrc
-wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/zsh/.zshrc -O .config/zsh/.zshrc
-wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.p10k.zsh -O .p10k.zsh
+wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.zshenv -O ~/.zshenv
+wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/zsh/.zprofile -O ~/.config/zsh/.zprofile
+wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/zsh/aliasrc -O ~/.config/zsh/aliasrc
+wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/zsh/.zshrc -O ~/.config/zsh/.zshrc
+wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.p10k.zsh -O ~/.p10k.zsh
 
 # downloading needed packages
 echo "Downloading needed packages..."

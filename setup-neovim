@@ -1,0 +1,22 @@
+#!/bin/sh
+
+sudo pacman -S yarn npm neovim python-pip python2-pip
+
+pip install neovim
+
+pip2 install neovim
+
+mkdir ~/.config
+mkdir ~/.config/nvim
+mkdir ~/.config/nvim/spell
+mkdir ~/.local/share
+mkdir ~/.local/share/nvim
+mkdir ~/.local/share/nvim/site
+mkdir ~/.local/share/nvim/site/autoload
+
+wget "https://github.com/CroLinuxGamer/Dotfiles/blob/master/.config/nvim/spell/en.utf-8.add.spl?raw=true" -O ~/.config/nvim/spell/en.utf-8.add.spl
+wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/nvim/tasks.ini -O ~/.config/nvim/tasks.ini
+wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/nvim/init.vim -O ~/.config/nvim/init.vim
+wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/nvim/coc-settings.json -O ~/.config/nvim/coc-settings.json
+wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.config/nvim/spell/en.utf-8.add -O ~/.config/nvim/spell/en.utf-8.add
+wget https://raw.githubusercontent.com/CroLinuxGamer/Dotfiles/master/.local/share/nvim/site/autoload/plug.vim -O ~/.local/share/nvim/site/autoload
