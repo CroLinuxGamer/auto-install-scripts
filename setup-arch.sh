@@ -9,7 +9,7 @@
 clear
 
 COLUMNS=$(tput cols)
-title="[Auto Artix]"
+title="[Auto Arch]"
 printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 
 # check boot mode
@@ -342,7 +342,7 @@ done
 # and making swap partitions if present
 clear
 COLUMNS=$(tput cols)
-title="[Auto Artix]"
+title="[Auto Arch"
 printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 while true; do
     read -p "Do you need to format any partitions? " yn
@@ -356,7 +356,7 @@ done
 # mounting partitions
 clear
 COLUMNS=$(tput cols)
-title="[Auto Artix]"
+title="[Auto Arch]"
 printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 printf "Mounting partitions...\n"
 sleep 2
@@ -365,7 +365,7 @@ mounting
 # installing base system
 clear
 COLUMNS=$(tput cols)
-title="[Auto Artix]"
+title="[Auto Arch]"
 printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 printf "Installing base system...\n"
 sleep 2
@@ -374,7 +374,7 @@ pacstrap /mnt base base-devel
 # installing kernel
 clear
 COLUMNS=$(tput cols)
-title="[Auto Artix]"
+title="[Auto Arch]"
 printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 printf "Installing kernel...\n"
 sleep 2
@@ -383,7 +383,7 @@ kernel_install
 # generating fstab
 clear
 COLUMNS=$(tput cols)
-title="[Auto Artix]"
+title="[Auto Arch]"
 printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 printf "Generating fstab...\n"
 fstabgen -U /mnt >> /mnt/etc/fstab
@@ -391,14 +391,14 @@ sleep 2
 
 clear
 COLUMNS=$(tput cols)
-title="[Auto Artix]"
+title="[Auto Arch]"
 printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 printf "Downloading the chroot part of the script..."
-artools-chroot /mnt curl -sO https://raw.githubusercontent.com/CroLinuxGamer/auto-install-scripts/main/chroot-artix.sh
-artools-chroot /mnt chmod +x chroot-artix.sh
+arch-chroot /mnt curl -sO https://raw.githubusercontent.com/CroLinuxGamer/auto-install-scripts/main/chroot-arch.sh
+arch-chroot /mnt chmod +x chroot-arch.sh
 sleep 2
-artools-chroot /mnt ./chroot-artix.sh
-artools-chroot /mnt rm -f chroot-arch.sh
+arch-chroot /mnt ./chroot-arch.sh
+arch-chroot /mnt rm -f chroot-arch.sh
 
 # unmount drives and turning off swap
 print "Unmounting drives..."
@@ -415,4 +415,4 @@ done
 
 clear
 
-echo "Your artix install is finished you can now reboot your pc!"
+echo "Your arch install is finished you can now reboot your pc!"
