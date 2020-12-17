@@ -295,24 +295,6 @@ mounting()
 
 }
 
-base_install()
-{
-    clear
-    COLUMNS=$(tput cols)
-    title="[Base installation]"
-    printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
-    printf "Choose your init system\n1. openrc\n2. runit\n3. s6\n"
-    while true; do
-        read -p "Type the number of the desired init system: " init
-        case $init in
-            [1]* ) basestrap /mnt base base-devel openrc; break ;;
-            [2]* ) basestrap /mnt base base-devel runit elogind-runit; break ;;
-            [2]* ) basestrap /mnt base base-devel s6 elogind-s6; break ;;
-            * ) echo "Please answer with the nubmer before the name of the init system!" ;;
-        esac
-    done
-}
-
 kernel_install()
 {
     clear
@@ -323,9 +305,9 @@ kernel_install()
     while true; do
         read -p "Type the nubmer of your desired kernel: " kernel
         case $kernel in
-            [1]* ) basestrap /mnt linux linux-firmware; break ;;
-            [2]* ) basestrap /mnt linux-lts linux-firmware; break ;;
-            [3]* ) basestrap /mnt linux-zen linux-firmware; break ;;
+            [1]* ) pacstrap /mnt linux linux-firmware; break ;;
+            [2]* ) pacstrap /mnt linux-lts linux-firmware; break ;;
+            [3]* ) pacstrap /mnt linux-zen linux-firmware; break ;;
             * ) echo "Please answer with the number before the name of the kernel!"
         esac
     done
@@ -387,7 +369,7 @@ title="[Auto Artix]"
 printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 printf "Installing base system...\n"
 sleep 2
-base_install
+pacstrap /mnt base base-devel
 
 # installing kernel
 clear
