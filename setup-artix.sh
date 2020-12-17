@@ -409,7 +409,7 @@ COLUMNS=$(tput cols)
 title="[Auto Artix]"
 printf "%*s\n\n" $(((${#title}+$COLUMNS)/2)) "$title"
 printf "Downloading the chroot part of the script..."
-artools-chroot /mnt curl -sO https://raw.githubusercontent.com/CroLinuxGamer/artix-auto/main/chroot-artix.sh
+artools-chroot /mnt curl -sO https://raw.githubusercontent.com/CroLinuxGamer/auto-install-scripts/main/chroot-artix.sh
 artools-chroot /mnt chmod +x chroot-artix.sh
 sleep 2
 artools-chroot /mnt ./chroot-artix.sh
@@ -430,4 +430,4 @@ done
 
 clear
 
-echo "Your arch install is finished you can now reboot your pc!"
+echo "Your artix install is finished you can now reboot your pc!"
