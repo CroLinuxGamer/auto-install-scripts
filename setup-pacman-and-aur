@@ -26,4 +26,4 @@ sudo pacman -Sy
 clear
 echo "Downloading custom makepkg.conf..."
 sleep 2
-sudo wget https://raw.githubusercontent.com/CroLinuxGamer/artix-auto/main/makepkg.conf -O /etc/makepkg.conf
+sudo wget https://raw.githubusercontent.com/CroLinuxGamer/auto-install-scripts/main/makepkg.conf -O /etc/makepkg.conf
